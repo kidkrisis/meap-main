@@ -61,7 +61,7 @@ A decentralized music streaming platform to connect music enthusiasts directly t
 - Install and setup Ganache, Truffle and Metamask
 - Clone the repository
 ``` 
-git clone https://github.com/madisonlinke/DApp/meap.git
+git clone https://github.com/kidkrisis/meap-main.git
 ```
 - Setup a workspace of meap on Ganache
 - Connect Metamask to the Ganache workspace

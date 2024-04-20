@@ -64,7 +64,7 @@ class Artist extends React.Component {
         console.log("Here!")
         event.preventDefault()
         let filepath = this.state.filepath
-        let myAudioFile
+        //let myAudioFile
         console.log(filepath)
         const AWS = require('aws-sdk');
 
