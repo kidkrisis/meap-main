@@ -3,7 +3,14 @@ import {COLORS} from "./Colors"
 import SongCard from "./SongCard"
 import Loader from "react-loader-spinner"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMicrophone, faHeadphones } from '@fortawesome/free-solid-svg-icons'
+import { faMicrophone, faHeadphones, faDollarSign} from '@fortawesome/free-solid-svg-icons'
+//import { Web3Context } from 'web3-core';
+//import { Contract } from 'web3-eth-contract';
+//import Web3 from 'web3'; 
+const Web3 = require('web3');
+const web3 = new Web3(process.env.RPC_URL);
+//const web3Context = new Web3Context("http://localhost:8545");
+
 
 class Artist extends React.Component {
 
@@ -90,8 +97,20 @@ class Artist extends React.Component {
         //console.log("Submitted")
       } 
 
+      onMintClick = async (event)=>{
+        let tokenId = '1000000000000'
+        console.log(tokenId)
+        console.log("MINT!!!!!!!!!!!!!!!!!!")
+        const web3 = new Web3(window.web3.currentProvider);
+        const { abi } = require('../Build/NFTContract.json');
+        var contract = new web3.eth.Contract(abi, '0xf3Baa9151bfE6145760F626Aea54E03cD8b44C6c');
+
+            //Mint NFT
+            await contract.methods.mint('0xeCc4cf1205094dD15b57Cf389690bdb2Be932236', tokenId).call();
+      }
+
     render(){
-        
+            
         if (this.state.artistID === ""){
             return (
                 <div style = {styles.main}>
@@ -129,6 +148,14 @@ class Artist extends React.Component {
                       <input type="submit"  onClick={this.onSubmitClick2} style = {styles.button} value="Upload" />
                     </div>
                   </form>
+                  <div>
+                  <form>
+                    <div style = {styles.form}>
+                      <h3 style = {{textAlign:"center"}}> <FontAwesomeIcon icon={faDollarSign}/>Mint NFT</h3>
+                      <input type="submit"  onClick={this.onMintClick} style = {styles.button} value="Mint" />
+                    </div>
+                  </form>
+                </div>
                 </div>
             )
         }
